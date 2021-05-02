@@ -1,0 +1,112 @@
+
+<style>
+    .avatar{
+        position: absolute;
+        top:-50px;
+        left: calc(50% - 50px);
+        width: 100px;
+        border-radius: 50%;
+        background: rgba(255, 255 , 255, 0.8);
+    }
+    .primary-text-color{
+        color: white;
+    }
+    .card{
+        box-shadow: 0 15px 25px rgba(0, 0 ,0, 0.5);
+        background: rgba(0, 0 ,0, 0.7);
+        margin-bottom: 100px;
+    }
+    label {
+        color: rgba(255,255,255);
+    }
+    .card h4{
+        text-align: center;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+        color: white;
+        position: relative;
+        top: 50px;
+    }
+    .btn-primary{
+        display: block;
+        margin-left: auto;
+        border: none;
+        outline:none;
+        background:#ff652f;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn-secondary{
+        border: none;
+        outline:none;
+        
+        letter-spacing: 1px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn-primary:active , .btn-primary:focus{
+        color: black !important;
+    background-color: white !important;
+    border-color: black !important;
+    box-shadow: 0 0 0 0.2rem rgb(0 0 0 / 50%) !important;
+    }
+</style>
+<div class="col-md-6 offset-md-3 mt-5">
+    
+    <div class="card">
+        <img class="avatar"src="../../assets/images/avatar.png" alt="">
+        <h4 class="card-header">Create Account</h4>
+        <div class="card-body">
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="firstName">First name</label>
+                    <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">First name</label>
+                    <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="emailId">Email</label>
+                    <input type="text" formControlName="emailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emailId.errors }" />
+                    <div *ngIf="submitted && f.emailId.errors" class="invalid-feedback">
+                        <div *ngIf="f.emailId.errors.required">Email is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobileNumber">Mobile Number</label>
+                    <input type="text" formControlName="mobileNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
+                    <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Sign up
+                </button>
+                </div>
+
+                <div class="form-group">
+                    <span class="primary-text-color">Already have an account?    </span>
+                    <button [disabled]="loading" class="btn btn-secondary" [routerLink]="['/login']" routerLinkActive="active">
+                        Login
+                    </button>
+                    </div>
+               
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </form>
+        </div>
+    </div>
+</div>
